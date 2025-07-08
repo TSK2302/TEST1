@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ReplaceWithTwins</class>
+ <widget class="QDialog" name="ReplaceWithTwins">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Replace with Twins</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+    background-color: #2E2E2E;
+    color: #FFFFFF;
+}
+QLabel {
+    color: #FFFFFF;
+}
+QLineEdit {
+    background-color: #3C3C3C;
+    color: #FFFFFF;
+    border: 1px solid #555555;
+}
+QPushButton {
+    background-color: #4A4A4A;
+    color: #FFFFFF;
+    border: 1px solid #555555;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #5A5A5A;
+}
+QPushButton:pressed {
+    background-color: #3A3A3A;
+}
+QProgressBar {
+    background-color: #3C3C3C;
+    color: #FFFFFF;
+    border: 1px solid #555555;
+}
+QProgressBar::chunk {
+    background-color: #4A90E2;
+}
+QTextEdit {
+    background-color: #3C3C3C;
+    color: #FFFFFF;
+    border: 1px solid #555555;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="infoLabel">
+     <property name="text">
+      <string>Select a folder containing PLY models to replace detected objects.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="folderLayout">
+     <item>
+      <widget class="QLineEdit" name="folderEdit">
+       <property name="placeholderText">
+        <string>Select twins folder</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="browseButton">
+       <property name="text">
+        <string>Browse</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="clustersLabel">
+     <property name="text">
+      <string>Detected objects:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="clustersTextEdit">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="maximumHeight">
+      <number>100</number>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="progressLabel">
+     <property name="text">
+      <string>Progress:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QProgressBar" name="progressBar">
+     <property name="value">
+      <number>0</number>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="statusLabel">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="buttonLayout">
+     <item>
+      <widget class="QPushButton" name="startButton">
+       <property name="text">
+        <string>Start Replacement</string>
+       </property>
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

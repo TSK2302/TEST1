@@ -1,0 +1,132 @@
+<ui version="4.0">
+ <class>ManageTwins</class>
+ <widget class="QDialog" name="ManageTwins">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Manage Twins</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+    background-color: #2b2b2b;
+    color: #ffffff;
+}
+QPushButton {
+    background-color: #3c3f41;
+    border: 1px solid #555555;
+    color: #ffffff;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #4c4f51;
+}
+QPushButton:pressed {
+    background-color: #5c5f61;
+}
+QListWidget {
+    background-color: #353535;
+    border: 1px solid #555555;
+    color: #ffffff;
+}
+QLineEdit {
+    background-color: #353535;
+    border: 1px solid #555555;
+    color: #ffffff;
+    padding: 2px;
+}
+QLabel {
+    color: #ffffff;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Selected Folder:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="folderPathEdit">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="selectFolderButton">
+       <property name="text">
+        <string>Select Folder</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QListWidget" name="fileListWidget"/>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="addFileButton">
+       <property name="text">
+        <string>Add File</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="deleteFileButton">
+       <property name="text">
+        <string>Delete Selected</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="renameFileButton">
+       <property name="text">
+        <string>Rename Selected</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Close</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>ManageTwins</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>532</x>
+     <y>379</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

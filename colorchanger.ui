@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ColorChanger</class>
+ <widget class="QDialog" name="ColorChanger">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Color Changer</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+    QDialog {
+        background-color: #2E2E2E;
+        color: #FFFFFF;
+    }
+    QGroupBox {
+        background-color: #3C3C3C;
+        border: 1px solid #555555;
+        border-radius: 5px;
+        margin-top: 10px;
+        color: #FFFFFF;
+    }
+    QGroupBox::title {
+        subcontrol-origin: margin;
+        subcontrol-position: top left;
+        padding: 0 3px;
+        color: #FFFFFF;
+    }
+    QPushButton {
+        background-color: #4A4A4A;
+        color: #FFFFFF;
+        border: 1px solid #555555;
+        padding: 5px;
+        border-radius: 3px;
+    }
+    QPushButton:hover {
+        background-color: #5A5A5A;
+    }
+    QPushButton:pressed {
+        background-color: #3A3A3A;
+    }
+    QRadioButton {
+        color: #FFFFFF;
+    }
+    QLabel {
+        color: #FFFFFF;
+    }
+   </string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="colorModeGroup">
+     <property name="title">
+      <string>Color Mode</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QRadioButton" name="singleColorRadio">
+        <property name="text">
+         <string>Single Color</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="gradientColorRadio">
+        <property name="text">
+         <string>Gradient Color</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="colorSelectionGroup">
+     <property name="title">
+      <string>Color Selection</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="singleColorLabel">
+        <property name="text">
+         <string>Color:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="singleColorButton">
+        <property name="text">
+         <string>Pick Color</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="gradientStartLabel">
+        <property name="text">
+         <string>Gradient Start:</string>
+        </property>
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="gradientStartButton">
+        <property name="text">
+         <string>Pick Start Color</string>
+        </property>
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="gradientEndLabel">
+        <property name="text">
+         <string>Gradient End:</string>
+        </property>
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="gradientEndButton">
+        <property name="text">
+         <string>Pick End Color</string>
+        </property>
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="applyButton">
+     <property name="text">
+      <string>Apply</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>singleColorRadio</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>singleColorLabel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>singleColorRadio</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>singleColorButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>gradientColorRadio</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>gradientStartLabel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>gradientColorRadio</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>gradientStartButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>gradientColorRadio</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>gradientEndLabel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>gradientColorRadio</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>gradientEndButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

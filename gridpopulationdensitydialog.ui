@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GridPopulationDensityDialog</class>
+ <widget class="QDialog" name="GridPopulationDensityDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>750</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>700</width>
+    <height>550</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Grid Population Density</string>
+  </property>
+  <property name="styleSheet">
+   <string>/* Enhanced Professional Dark Theme for Large Data Ranges */
+QDialog {
+    background-color: #1E1E1E;
+    color: #E1E1E1;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    border: 1px solid #3A3A3A;
+    border-radius: 6px;
+}
+
+QLabel {
+    color: #CCCCCC;
+    font-size: 11px;
+}
+
+QLabel#titleLabel {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #2D2D30;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #3F3F46;
+}
+
+QLabel#statusLabel {
+    color: #CCCCCC;
+    font-size: 10px;
+    background-color: #2D2D30;
+    padding: 4px 8px;
+    border-radius: 3px;
+    border: 1px solid #3F3F46;
+}
+
+QWidget#gridWidget {
+    background-color: #252526;
+    border: 1px solid #464647;
+    border-radius: 4px;
+}
+
+QScrollArea {
+    background-color: #252526;
+    border: 1px solid #464647;
+    border-radius: 4px;
+}
+
+QScrollArea QWidget {
+    background-color: transparent;
+}
+
+QPushButton {
+    background-color: #6B6B6B;
+    color: #FFFFFF;
+    border: 1px solid #5A5A5A;
+    padding: 6px 16px;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 3px;
+    min-width: 60px;
+}
+
+QPushButton:hover {
+    background-color: #5A5A5A;
+    border: 1px solid #4A4A4A;
+}
+
+QPushButton:pressed {
+    background-color: #4A4A4A;
+    border: 1px solid #3A3A3A;
+}
+
+QPushButton#closeButton {
+    background-color: #007ACC;
+    border: 1px solid #005F9E;
+    min-width: 80px;
+}
+
+QPushButton#closeButton:hover {
+    background-color: #005F9E;
+    border: 1px solid #004B7A;
+}
+
+QPushButton#exportButton {
+    background-color: #4A4A4A;
+    border: 1px solid #3A3A3A;
+    min-width: 80px;
+}
+
+QPushButton#exportButton:hover {
+    background-color: #3A3A3A;
+    border: 1px solid #2A2A2A;
+}
+
+QPushButton#refreshButton {
+    background-color: #4A4A4A;
+    border: 1px solid #3A3A3A;
+    min-width: 80px;
+}
+
+QPushButton#refreshButton:hover {
+    background-color: #3A3A3A;
+    border: 1px solid #2A2A2A;
+}
+
+QGroupBox {
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #007ACC;
+    border-radius: 4px;
+    margin-top: 8px;
+    padding-top: 8px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 8px;
+    padding: 0 6px 0 6px;
+    background-color: #1E1E1E;
+}
+
+/* Enhanced Legend styles for larger data ranges */
+QLabel#legendLabel {
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+QLabel#legendEmpty {
+    background-color: #404040;
+    border: 1px solid #555555;
+    border-radius: 2px;
+    min-width: 22px;
+    min-height: 18px;
+}
+
+QLabel#legendLow {
+    background-color: #90EE90;
+    border: 1px solid #7FDD7F;
+    border-radius: 2px;
+    min-width: 22px;
+    min-height: 18px;
+}
+
+QLabel#legendMedium {
+    background-color: #FFA500;
+    border: 1px solid #E69500;
+    border-radius: 2px;
+    min-width: 22px;
+    min-height: 18px;
+}
+
+QLabel#legendHigh {
+    background-color: #FF4444;
+    border: 1px solid #E63333;
+    border-radius: 2px;
+    min-width: 22px;
+    min-height: 18px;
+}
+
+/* Additional legend colors for extended ranges */
+QLabel#legendVeryLow {
+    background-color: #ADFF2F;
+    border: 1px solid #98E62A;
+    border-radius: 2px;
+    min-width: 22px;
+    min-height: 18px;
+}
+
+QLabel#legendVeryHigh {
+    background-color: #8B0000;
+    border: 1px solid #770000;
+    border-radius: 2px;
+    min-width: 22px;
+    min-height: 18px;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>8</number>
+   </property>
+   <property name="leftMargin">
+    <number>12</number>
+   </property>
+   <property name="topMargin">
+    <number>12</number>
+   </property>
+   <property name="rightMargin">
+    <number>12</number>
+   </property>
+   <property name="bottomMargin">
+    <number>12</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="text">
+      <string>Grid Population Density Analysis</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="infoLayout">
+     <property name="spacing">
+      <number>15</number>
+     </property>
+     <item>
+      <widget class="QGroupBox" name="gridInfoGroup">
+       <property name="title">
+        <string>Grid Information</string>
+       </property>
+       <property name="maximumHeight">
+        <number>85</number>
+       </property>
+       <layout class="QGridLayout" name="gridInfoLayout">
+        <property name="horizontalSpacing">
+         <number>12</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>5</number>
+        </property>
+        <property name="leftMargin">
+         <number>10</number>
+        </property>
+        <property name="topMargin">
+         <number>10</number>
+        </property>
+        <property name="rightMargin">
+         <number>10</number>
+        </property>
+        <property name="bottomMargin">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Rows:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="rowsLabel">
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="styleSheet">
+           <string>font-weight: bold; color: #FFFFFF;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Columns:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLabel" name="columnsLabel">
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="styleSheet">
+           <string>font-weight: bold; color: #FFFFFF;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Cell Size:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" colspan="3">
+         <widget class="QLabel" name="cellSizeLabel">
+          <property name="text">
+           <string>0.0</string>
+          </property>
+          <property name="styleSheet">
+           <string>font-weight: bold; color: #FFFFFF;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="legendGroup">
+       <property name="title">
+        <string>Density Legend (Dynamic)</string>
+       </property>
+       <property name="maximumHeight">
+        <number>85</number>
+       </property>
+       <layout class="QGridLayout" name="legendLayout">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>5</number>
+        </property>
+        <property name="leftMargin">
+         <number>10</number>
+        </property>
+        <property name="topMargin">
+         <number>10</number>
+        </property>
+        <property name="rightMargin">
+         <number>10</number>
+        </property>
+        <property name="bottomMargin">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="legendEmpty">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="emptyLabel">
+          <property name="text">
+           <string>Empty</string>
+          </property>
+          <property name="styleSheet">
+           <string>font-size: 10px;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="legendLow">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLabel" name="lowLabel">
+          <property name="text">
+           <string>Low</string>
+          </property>
+          <property name="styleSheet">
+           <string>font-size: 10px;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="legendMedium">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="mediumLabel">
+          <property name="text">
+           <string>Medium</string>
+          </property>
+          <property name="styleSheet">
+           <string>font-size: 10px;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="legendHigh">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QLabel" name="highLabel">
+          <property name="text">
+           <string>High</string>
+          </property>
+          <property name="styleSheet">
+           <string>font-size: 10px;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
+     <widget class="QWidget" name="gridWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>724</width>
+        <height>389</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="statusLabel">
+     <property name="text">
+      <string>Ready - Click cells to view detailed information</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="buttonLayout">
+     <property name="spacing">
+      <number>10</number>
+     </property>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="refreshButton">
+       <property name="text">
+        <string>Refresh</string>
+       </property>
+       <property name="toolTip">
+        <string>Refresh the grid display</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="exportButton">
+       <property name="text">
+        <string>Export</string>
+       </property>
+       <property name="toolTip">
+        <string>Export grid data to file</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="closeButton">
+       <property name="text">
+        <string>Close</string>
+       </property>
+       <property name="toolTip">
+        <string>Close this dialog</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

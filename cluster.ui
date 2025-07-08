@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ClusterList</class>
+ <widget class="QDialog" name="ClusterList">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Cluster Analysis Dashboard</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/icons/cluster.png</normaloff>:/icons/cluster.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Modern Professional Dark Theme */
+QDialog {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, 
+                stop:0 #0a0a0a, stop:0.5 #1a1a2e, stop:1 #16213e);
+    color: #ffffff;
+    font-family: 'Segoe UI', 'Inter', 'Roboto', sans-serif;
+    font-size: 13px;
+}
+
+/* Header Section */
+QLabel#titleLabel {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 10px 0px;
+    background: transparent;
+}
+
+QLabel#subtitleLabel {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    padding-bottom: 20px;
+    background: transparent;
+}
+
+/* Stats Frame */
+QFrame#statsFrame {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px 0px;
+}
+
+QLabel#statsLabel {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+QLabel#statsValue {
+    font-size: 22px;
+    font-weight: bold;
+    color: #00d4ff;
+    margin-top: 5px;
+}
+
+/* Table Styling */
+QTableWidget {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    gridline-color: rgba(255, 255, 255, 0.05);
+    selection-background-color: rgba(0, 212, 255, 0.2);
+    selection-color: #ffffff;
+    alternate-background-color: rgba(255, 255, 255, 0.02);
+    font-size: 13px;
+    outline: none;
+}
+
+QTableWidget::item {
+    padding: 12px 16px;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+QTableWidget::item:selected {
+    background-color: rgba(0, 212, 255, 0.15);
+    border-left: 3px solid #00d4ff;
+}
+
+QTableWidget::item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Header Styling */
+QHeaderView {
+    background-color: transparent;
+}
+
+QHeaderView::section {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 rgba(255, 255, 255, 0.1), stop:1 rgba(255, 255, 255, 0.05));
+    color: rgba(255, 255, 255, 0.9);
+    padding: 16px 16px;
+    border: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+QHeaderView::section:first {
+    border-top-left-radius: 16px;
+}
+
+QHeaderView::section:last {
+    border-top-right-radius: 16px;
+    border-right: none;
+}
+
+QHeaderView::section:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Scrollbar Styling */
+QScrollBar:vertical {
+    background: rgba(255, 255, 255, 0.05);
+    width: 8px;
+    border-radius: 4px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    min-height: 20px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    background: rgba(255, 255, 255, 0.05);
+    height: 8px;
+    border-radius: 4px;
+    margin: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    min-width: 20px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+/* Button Styling */
+QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 #4A90E2, stop:1 #357ABD);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 13px;
+    min-width: 100px;
+}
+
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 #5BA0F2, stop:1 #4A90E2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+QPushButton:pressed {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 #357ABD, stop:1 #2A5D99);
+    transform: translateY(0px);
+}
+
+QPushButton:focus {
+    border: 2px solid #00d4ff;
+    outline: none;
+}
+
+/* Action Buttons */
+QPushButton#exportBtn {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 #00d4ff, stop:1 #0099cc);
+    margin-right: 10px;
+}
+
+QPushButton#exportBtn:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 #1ae4ff, stop:1 #00d4ff);
+}
+
+QPushButton#refreshBtn {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 #28a745, stop:1 #218838);
+    margin-right: 10px;
+}
+
+QPushButton#refreshBtn:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 #34ce57, stop:1 #28a745);
+}
+
+/* Dialog Button Box */
+QDialogButtonBox {
+    background: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+/* Search Box */
+QLineEdit {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #ffffff;
+    font-size: 13px;
+    selection-background-color: rgba(0, 212, 255, 0.3);
+}
+
+QLineEdit:focus {
+    border: 2px solid #00d4ff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+QLineEdit::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Separator Line */
+QFrame[frameShape="4"] {
+    color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>20</number>
+   </property>
+   <property name="leftMargin">
+    <number>30</number>
+   </property>
+   <property name="topMargin">
+    <number>30</number>
+   </property>
+   <property name="rightMargin">
+    <number>30</number>
+   </property>
+   <property name="bottomMargin">
+    <number>30</number>
+   </property>
+   <item>
+    <layout class="QVBoxLayout" name="headerLayout">
+     <property name="spacing">
+      <number>5</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="titleLabel">
+       <property name="text">
+        <string>Cluster Analysis Dashboard</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="subtitleLabel">
+       <property name="text">
+        <string>Identified clusters and similar cluster groups</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="headerSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="controlsLayout">
+     <item>
+      <widget class="QLineEdit" name="searchEdit">
+       <property name="placeholderText">
+        <string>Search clusters...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="buttonLayout">
+       <item>
+        <widget class="QPushButton" name="refreshBtn">
+         <property name="text">
+          <string>Refresh</string>
+         </property>
+         <property name="toolTip">
+          <string>Refresh cluster data</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="exportBtn">
+         <property name="text">
+          <string>Export</string>
+         </property>
+         <property name="toolTip">
+          <string>Export cluster data to CSV</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="statsLayout">
+     <property name="spacing">
+      <number>20</number>
+     </property>
+     <item>
+      <widget class="QFrame" name="statsFrame">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>5</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="totalClustersValue">
+          <property name="text">
+           <string>12</string>
+          </property>
+          <property name="objectName">
+           <string>statsValue</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="totalClustersLabel">
+          <property name="text">
+           <string>TOTAL CLUSTERS</string>
+          </property>
+          <property name="objectName">
+           <string>statsLabel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="statsFrame_2">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="spacing">
+         <number>5</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="dataPointsValue">
+          <property name="text">
+           <string>1,247</string>
+          </property>
+          <property name="objectName">
+           <string>statsValue</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="dataPointsLabel">
+          <property name="text">
+           <string>DATA POINTS</string>
+          </property>
+          <property name="objectName">
+           <string>statsLabel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="statsFrame_3">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <property name="spacing">
+         <number>5</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="avgSizeValue">
+          <property name="text">
+           <string>103.9</string>
+          </property>
+          <property name="objectName">
+           <string>statsValue</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="avgSizeLabel">
+          <property name="text">
+           <string>AVG SIZE</string>
+          </property>
+          <property name="objectName">
+           <string>statsLabel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <spacer name="statsSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="clusterTable">
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="showGrid">
+      <bool>true</bool>
+     </property>
+     <property name="rowCount">
+      <number>5</number>
+     </property>
+     <property name="columnCount">
+      <number>0</number>
+     </property>
+     <property name="sortingEnabled">
+      <bool>false</bool>
+     </property>
+     <property name="minimumHeight">
+      <number>150</number>
+     </property>
+     <property name="gridStyle">
+      <enum>Qt::SolidLine</enum>
+     </property>
+     <property name="cornerButtonEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <column>
+      <property name="text">
+       <string>Cluster ID</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Points</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Bounding Box</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Type</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Actions</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="separatorLine">
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="statusLabel">
+     <property name="styleSheet">
+      <string notr="true">color: rgba(255, 255, 255, 0.6); font-size: 12px;</string>
+     </property>
+     <property name="text">
+      <string>Ready • 12 clusters loaded</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="bottomSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="dialogButtonLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Close</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>ClusterList</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>532</x>
+     <y>679</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>599</x>
+     <y>699</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

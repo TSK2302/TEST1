@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CollisionDialog</class>
+ <widget class="QDialog" name="CollisionDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>495</width>
+    <height>264</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Point Cloud Visualization</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #1e1e1e;</string>
+  </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>230</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Apply</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="browseMapButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>60</y>
+     <width>111</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #2d2d2d;</string>
+   </property>
+   <property name="text">
+    <string>Browse Map</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="browsePointCloudButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>30</y>
+     <width>112</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #2d2d2d;</string>
+   </property>
+   <property name="text">
+    <string>Browse Point Cloud</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="browseCsvButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>90</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #2d2d2d;</string>
+   </property>
+   <property name="text">
+    <string>Browse CSV</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="csvPathLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>94</y>
+     <width>351</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #2d2d2d;</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="pointCloudPathLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>34</y>
+     <width>351</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #2d2d2d;</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="mapPathLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>64</y>
+     <width>351</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #2d2d2d;</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
